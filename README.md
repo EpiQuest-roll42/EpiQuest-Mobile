@@ -1,16 +1,9 @@
-# roll42
+# Lanterne
 
-A new Flutter project.
+**Ta table de jeu de rôle, sur deux écrans.** Lanterne est une table de jeu de rôle virtuelle compatible 5e édition : le MJ mène la partie sur son ordinateur, une vue joueurs s'affiche sur un second écran ou une télévision, et chaque joueur gère sa fiche et ses dés sur l'application mobile.
 
-## Getting Started
+## Technologies used
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Linter :** [Very Good Analysis](https://pub.dev/packages/very_good_analysis)
+- **State Management :** [Riverpod](https://riverpod.dev/)
+    - *[riverpod_lint](https://riverpod.dev/) :* Linter supplémentaire spécifique à Riverpod
