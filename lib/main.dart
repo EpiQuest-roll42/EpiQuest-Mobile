@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:roll42/i18n/strings.g.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(ProviderScope(child: TranslationProvider(child: const MyApp())));
 }
 
 /// App class
@@ -14,6 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: TranslationProvider.of(context).flutterLocale,
+      supportedLocales: AppLocaleUtils.supportedLocales,
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -33,7 +40,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'My Home Page'),
     );
   }
 }
@@ -61,6 +68,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool french = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final localeString = french ? 'fr' : 'en';
+    unawaited(LocaleSettings.setLocaleRaw(localeString));
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -73,8 +88,16 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Future<void> _switchLanguage() async {
+    french = !french;
+    final localeString = french ? 'fr' : 'en';
+    await LocaleSettings.setLocaleRaw(localeString);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -110,10 +133,15 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: .center,
           children: [
+            Text(t.welcome),
             const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            TextButton(
+              onPressed: _switchLanguage,
+              child: const Text('Switch language'),
             ),
           ],
         ),

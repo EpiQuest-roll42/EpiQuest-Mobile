@@ -7,3 +7,4 @@
 - **Linter :** [Very Good Analysis](https://pub.dev/packages/very_good_analysis)
 - **State Management :** [Riverpod](https://riverpod.dev/)
     - *[riverpod_lint](https://riverpod.dev/) :* Linter supplémentaire spécifique à Riverpod
+- **Localization :** [Slang](https://pub.dev/packages/slang)
