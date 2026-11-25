@@ -1,0 +1,9 @@
+services:
+  build:
+    build: .
+    container_name: build_app
+    volumes:
+      - .:/app
+      - /app/.dart_tool
+    env_file:
+      - .env
